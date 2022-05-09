@@ -14,6 +14,9 @@ app.use(express.json());
 
 
 // Routes Middleware
+// for register and login
+app.use("/accounts")
+//for products
 
 
 // Handles any other endpoints [unassigned - endpoints]
