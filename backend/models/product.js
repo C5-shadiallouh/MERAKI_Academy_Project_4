@@ -9,4 +9,4 @@ const productsSchema= new mongoose.Schema({
     rate:[{type:mongoose.Schema.Types.ObjectId , ref:"Rate"}]
 
 })
-module.exports("Products",productsSchema)
+module.exports=mongoose.model("Products",productsSchema)
