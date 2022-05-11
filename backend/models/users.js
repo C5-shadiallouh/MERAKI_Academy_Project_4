@@ -1,5 +1,6 @@
-import mongoose from "mongoose";
-import bcrypt from "bcrypt";
+const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
+
 const usersSchema = new mongoose.Schema({
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
@@ -7,10 +8,10 @@ const usersSchema = new mongoose.Schema({
   city: { type: String },
   password: { type: String, required: true },
   email: { type: String, required: true, unique: true },
-  role: {type: mongoose.Schema.Types.ObjectId ,ref:"Roles"},
+  role: {type:String ,ref:"Roles"},
 });
-userSchema.pre("save", async function () {
+usersSchema.pre("save", async function () {
   this.email = this.email.toLowerCase();
-  this.password = await bcrypt.hash(this.password, process.env.SALT);
+  this.password = await bcrypt.hash(this.password, Number(process.env.SALT));
 });
 module.exports = mongoose.model("Users",usersSchema)

@@ -1,4 +1,4 @@
-import mongoose, { SchemaType } from "mongoose";
+const mongoose = require("mongoose");
 const commentsSchema= new mongoose.Schema({
     comment:{type:String},
     commenter:{type:mongoose.Schema.Types.ObjectId , ref:"Users"}

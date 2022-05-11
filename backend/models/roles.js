@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 const rolesSchema = new mongoose.Schema({
     role:{type:String , required:true},
     permissions:{type:Array , required:true},

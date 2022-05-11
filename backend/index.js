@@ -10,12 +10,12 @@ app.use(cors());
 app.use(express.json());
 
 // Import Routers
-
+const userRouter=require("./routes/users")
 
 
 // Routes Middleware
 // for register and login
-app.use("/accounts")
+app.use("/users",userRouter)
 //for products
 
 
