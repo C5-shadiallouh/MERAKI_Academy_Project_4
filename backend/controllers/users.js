@@ -2,8 +2,9 @@ const userModel = require("../models/users");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
+
 const register = (req, res) => {
-  const { firstName, lastName, phone, city, password, email } = req.body;
+  const { firstName, lastName, phone, city, password, email,isAdmin} = req.body;
   
   const newUser = new userModel({
     firstName,
@@ -12,7 +13,7 @@ const register = (req, res) => {
     city,
     password,
     email,
-    role:"User",
+    isAdmin,
   });
   newUser
     .save()
@@ -63,8 +64,8 @@ const login = (req, res) => {
               fName: result.firstName,
               lName: result.lastName,
             };
-            const secret = "Shadi";
-            const token = jwt.sign(payload, secret);
+            const options = {expiresIn:"30d"}
+            const token = jwt.sign(payload, process.env.SECRET,options );
             res.status(200).json({
               success: true,
               message: `valid login credentials`,

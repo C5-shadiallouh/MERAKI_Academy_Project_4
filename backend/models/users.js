@@ -8,10 +8,10 @@ const usersSchema = new mongoose.Schema({
   city: { type: String },
   password: { type: String, required: true },
   email: { type: String, required: true, unique: true },
-  role: {type:String ,ref:"Roles"},
+  isAdmin: { type: Boolean, default: false },
 });
 usersSchema.pre("save", async function () {
   this.email = this.email.toLowerCase();
   this.password = await bcrypt.hash(this.password, Number(process.env.SALT));
 });
-module.exports = mongoose.model("Users",usersSchema)
+module.exports = mongoose.model("Users", usersSchema);
