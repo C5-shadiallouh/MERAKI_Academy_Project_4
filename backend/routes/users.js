@@ -5,6 +5,6 @@ const {addToCart}=require("../controllers/cart")
 
 userRouter.post("/",register)
 userRouter.post("/login",login)
-
+userRouter.post("/:id/cart")
 
 module.exports= userRouter
