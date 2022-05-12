@@ -29,7 +29,7 @@ const Navbar = () => {
         <Link to={"/register"}>register</Link>
       </div>
       <Link to={"/adminpanel"} style={
-          isAdmin == true
+          localStorage.getItem("isAdmin") == "true"
             ? { display: "flex" }
             : { display: "none" }
         }>admin panel</Link>

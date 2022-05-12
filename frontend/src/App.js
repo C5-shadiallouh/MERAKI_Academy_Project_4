@@ -4,6 +4,8 @@ import Navbar from "./components/Navbar"
 import Login from "./components/Login";
 import Register from "./components/Register"
 import Home from "./components/Home";
+import AdminPanel from "./components/Adminpanel";
+import AddProduct from "./components/Addproduct";
 export const loginStatusContext = createContext();
 function App() {
 const [token,setToken]=useState(localStorage.getItem("token"))
@@ -20,6 +22,8 @@ localStorage.setItem("isAdmin",isAdmin)
       <Route path="/login" element={<Login/>}/>
       <Route path="/register" element={<Register/>}/>
       <Route path="/" element={<Home/>}/>
+      <Route path="/adminpanel" element={<AdminPanel/>}/>
+      <Route path="/addproducts" element={<AddProduct/>}/>
       </Routes>
       </loginStatusContext.Provider>
     </div>

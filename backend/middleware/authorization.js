@@ -1,6 +1,6 @@
-const authorization = (string) => {
+const authorization = (trueOrFalse) => {
     return (req, res, next) => {
-      if (req.token.isAdmin == "false") {
+      if (req.token.isAdmin == trueOrFalse) {
         return res.status(403).json({
           success: false,
           message: `Unauthorized`,

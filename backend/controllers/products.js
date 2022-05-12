@@ -24,6 +24,7 @@ const addProduct = (req, res) => {
   newProduct
     .save()
     .then((result) => {
+      
       res.status(201).json({
         success: true,
         product: result,
