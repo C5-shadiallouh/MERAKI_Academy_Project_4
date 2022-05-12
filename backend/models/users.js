@@ -9,7 +9,7 @@ const usersSchema = new mongoose.Schema({
   password: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   isAdmin: { type: Boolean, default: false },
-  cart:{type:Array}
+  cart:[{type:mongoose.Schema.Types.ObjectId, ref:"Cart"}]
 });
 usersSchema.pre("save", async function () {
   this.email = this.email.toLowerCase();

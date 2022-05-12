@@ -18,7 +18,6 @@ const register = (req, res) => {
   newUser
     .save()
     .then((result) => {
-      console.log("result");
 
       res.status(201).json({
         success: true,
@@ -27,7 +26,6 @@ const register = (req, res) => {
       });
     })
     .catch((err) => {
-      console.log(err.keyPattern.phone);
       err.code == 11000 && err.keyPattern.phone == 1
         ? res
             .status(409)
@@ -42,7 +40,7 @@ const login = (req, res) => {
   
   const email = req.body.email;
   const phone = req.body.phone;
-  console.log(phone);
+  
   const password = req.body.password;
   // create function to choose email or phone
   const emailOrPhone = (email, phone) => {
@@ -53,11 +51,12 @@ const login = (req, res) => {
     return phone;
   };
   const emailPhone = emailOrPhone(email, phone);
+ 
   userModel
-    .findOne({ emailPhone })
+    .findOne({ email:emailPhone })
     .then((result) => {
       if (result != null) {
-        console.log(result.password);
+          console.log(result);
         bcrypt.compare(password, result.password, (err, CompareResult) => {
           if (CompareResult == true) {
             const payload = {
