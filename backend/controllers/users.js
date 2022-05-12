@@ -61,7 +61,8 @@ const login = (req, res) => {
           if (CompareResult == true) {
             const payload = {
               id: result._id,
-              name:`${result.firstName}-${result.lastName}`
+              name:`${result.firstName}-${result.lastName}`,
+              isAdmin: result.isAdmin
               
             };
             const options = {expiresIn:"30d"}

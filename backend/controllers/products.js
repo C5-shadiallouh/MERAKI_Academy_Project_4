@@ -78,22 +78,27 @@ const updateProductById = (req, res) => {
       res.status(404).json(err);
     });
 };
-const getProductsByCategory = async(req, res) => {
+const getProductsByCategory = async (req, res) => {
   const category = req.params;
-  
-  
+
   productsModel
     .find(category)
     .then((result) => {
-      
-     
       res.status(200).json(result);
-    
-    
     })
     .catch((err) => {
-      res.json(err); 
+      res.json(err);
     });
+};
+const getAllProducts = (req, res) => {
+  productsModel
+    .find({})
+    .then((result) => {
+        
+        
+      res.status(200).json(result)
+    })
+    .catch((err) => res.json(err));
 };
 
 module.exports = {
@@ -101,4 +106,5 @@ module.exports = {
   deleteProductById,
   updateProductById,
   getProductsByCategory,
+  getAllProducts,
 };

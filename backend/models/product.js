@@ -8,6 +8,7 @@ const productsSchema = new mongoose.Schema({
   manufacture: { type: String, required: true },
   comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comments" }],
   rate: [{ type: mongoose.Schema.Types.ObjectId, ref: "Rate" }],
+  created:{type:Date ,default:Date.now}
   
 });
 
