@@ -38,22 +38,24 @@ const register = (req, res) => {
 
 const login = (req, res) => {
   
-  const email = req.body.email;
-  const phone = req.body.phone;
+  const emailOrPhone = req.body.emailOrPhone;
   
   const password = req.body.password;
   // create function to choose email or phone
-  const emailOrPhone = (email, phone) => {
-    if (email != undefined) {
-      return email.toLowerCase();
+  const handleEmailOrPhone = (emailOrPhone) => {
+    if (emailOrPhone.includes("@") && emailOrPhone !=undefined) {
+      return {email:emailOrPhone.toLowerCase()};
+    }
+    else{
+      return {phone:emailOrPhone}
     }
 
-    return phone;
+    
   };
-  const emailPhone = emailOrPhone(email, phone);
+  const emailPhone = handleEmailOrPhone(emailOrPhone);
  
   userModel
-    .findOne({ email:emailPhone })
+    .findOne( emailPhone )
     .then((result) => {
       if (result != null) {
           console.log(result);
