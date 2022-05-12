@@ -3,6 +3,10 @@
     padding: 0px;
     box-sizing: border-box;
 }
+.navbar{
+    display: flex;
+    justify-content: space-evenly;
+}
 a{
     display: inline;
     margin: 20px;
