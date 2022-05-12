@@ -72,7 +72,8 @@ const login = (req, res) => {
             res.status(200).json({
               success: true,
               message: `valid login credentials`,
-              token: token
+              token: token,
+              isAdmin:result.isAdmin
             });
           } else {
             res.status(403).json("wrong Password");
