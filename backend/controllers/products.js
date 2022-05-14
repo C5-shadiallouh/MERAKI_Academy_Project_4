@@ -101,11 +101,29 @@ const getAllProducts = (req, res) => {
     })
     .catch((err) => res.json(err));
 };
-
+const getProductsByDate = (req, res) => {
+  let date1 = new Date()
+  let date2= new Date()
+  let date3 = date2.setDate(date2.getDate() -1);
+  const page = req.query.p ||0
+  const productPerPage= 3
+  productsModel
+    .find({created:{$lte:date1}})
+    .skip(page*productPerPage)
+    .limit(productPerPage)
+    .sort('-created')
+    .then((result) => {
+        console.log(date2);
+        
+      res.status(200).json(result)
+    })
+    .catch((err) => res.json(err));
+};
 module.exports = {
   addProduct,
   deleteProductById,
   updateProductById,
   getProductsByCategory,
   getAllProducts,
+  getProductsByDate,
 };
