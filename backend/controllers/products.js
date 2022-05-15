@@ -83,8 +83,8 @@ const updateProductById = (req, res) => {
 };
 const getProductsByCategory = async (req, res) => {
   const category = req.params;
-  const page = req.query.p ||0
-  const productPerPage= 4
+  const page = req.query.p||0
+  const productPerPage= 9
   productsModel
     .find(category)
     .skip(page*productPerPage)
@@ -97,10 +97,10 @@ const getProductsByCategory = async (req, res) => {
     });
 };
 const getAllProducts = (req, res) => {
-  const page = req.query.p || 0
-  const productPerPage= 4
-
-  productsModel
+  const page = req.query.p
+  const productPerPage= 9
+  if (page != undefined)
+  {productsModel
     .find({})
     .skip(page*productPerPage)
     .limit(productPerPage)
@@ -109,10 +109,17 @@ const getAllProducts = (req, res) => {
         
       res.status(200).json(result)
     })
+    .catch((err) => res.json(err));}
+    else{
+      productsModel
+    .count({})
+    .then((result) => {
+        
+        
+      res.status(200).json(result)
+    })
     .catch((err) => res.json(err));
-    
-      
-    
+    }
 };
 const getProductsByDate = (req, res) => {
   let date1 = new Date()
