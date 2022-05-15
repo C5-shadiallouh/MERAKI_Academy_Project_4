@@ -1,10 +1,12 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./style.css";
 import { loginStatusContext } from "../../App";
 const Navbar = () => {
-  const { token, setToken, isLoggedIn, setIsLoggedIn,isAdmin,setIsAdmin } =
+  const { state,setState,path,setPath} =
     useContext(loginStatusContext);
+    const {}=useContext(loginStatusContext)
+const [isClicked,setIsClicked]=useState(false)
   const navigate = useNavigate();
    return (
      <div className="navComponent">
@@ -56,13 +58,22 @@ const Navbar = () => {
       </nav>
     </div>
     <div className="categories">
-      <Link to={"/hardware"}>COMPUTER HARDWARE</Link>
+      <Link to={"/"} onClick={()=>{
+        
+        setPath("/category/pclaptop")
+        setIsClicked(true)
+        setState(!state)
+      }}>COMPUTER HARDWARE</Link>
       <Link to={"/"}>PC&LAPTOPS</Link>
       <Link to={"/"}>GAMING</Link>
       <Link to={"/"}>PRINTERS&SCANNERS</Link>
       <Link to={"/"}>SOFTWARE</Link>
     </div>
-
+     
+   <div style={isClicked?{display:"flex"}:{display:"none"}}>
+   <p>cpu</p>
+    <p>gpu</p>
+   </div>
     </div>
   );
 };

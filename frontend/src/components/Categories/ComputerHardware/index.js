@@ -6,8 +6,8 @@ const Hardware= ()=>{
     return(
         <div>
         <div className="subCat"> 
-        <p>Audio</p>
-        <p>Monitors and display</p>
+        <p>cpu</p>
+        <p>Graphic</p>
         <p>Peripherals & Accessories</p>
         <p>Projector & Screen</p>
         <p>Server & Workstation</p>

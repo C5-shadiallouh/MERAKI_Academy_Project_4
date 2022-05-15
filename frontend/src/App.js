@@ -15,9 +15,12 @@ const [isAdmin,setIsAdmin]=useState(localStorage.getItem("isAdmin"))
 localStorage.setItem("token",token)
 localStorage.setItem("isLoggedIn",isLoggedIn)
 localStorage.setItem("isAdmin",isAdmin)
+const [products, setProducts] = useState();
+const [path, setPath] = useState("");
+const [state, setState] = useState(false);
   return (
     <div className="App">
-      <loginStatusContext.Provider value={{token,setToken,isLoggedIn,setIsLoggedIn,isAdmin,setIsAdmin}}>
+      <loginStatusContext.Provider value={{token,setToken,isLoggedIn,setIsLoggedIn,isAdmin,setIsAdmin,products,setProducts,path, setPath,state, setState}}>
       <Navbar/>
       <Routes>
       <Route path="/login" element={<Login/>}/>

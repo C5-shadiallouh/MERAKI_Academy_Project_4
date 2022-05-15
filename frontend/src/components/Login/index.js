@@ -11,6 +11,7 @@ import { loginStatusContext } from '../../App';
   const {token,setToken,isLoggedIn,setIsLoggedIn,isAdmin,setIsAdmin} = useContext(loginStatusContext)
   return (
     <div>Login
+      
     <input type={"text"} placeholder="Enter your email or phone number" onChange={(e)=>{
       setEmailOrPhone(e.target.value)
     }}/>
