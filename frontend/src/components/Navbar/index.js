@@ -7,16 +7,19 @@ const Navbar = () => {
     useContext(loginStatusContext);
   const navigate = useNavigate();
    return (
+     <div className="navComponent">
     <div className="navbar">
+       <div className="logo">
       <Link to={"/"}>
         <img
           src="http://simpleicon.com/wp-content/uploads/rocket.png"
           width={"80px"}
         />
       </Link>
-
+      </div>
       <input placeholder="search" />
       <button> search</button>
+      <nav>
       <div
         style={
           localStorage.getItem("isLoggedIn") == "true"
@@ -50,6 +53,16 @@ const Navbar = () => {
       >
         logout
       </Link>
+      </nav>
+    </div>
+    <div className="categories">
+      <Link to={"/"}>COMPUTER HARDWARE</Link>
+      <Link to={"/"}>PC&LAPTOPS</Link>
+      <Link to={"/"}>GAMING</Link>
+      <Link to={"/"}>PRINTERS&SCANNERS</Link>
+      <Link to={"/"}>SOFTWARE</Link>
+    </div>
+
     </div>
   );
 };
