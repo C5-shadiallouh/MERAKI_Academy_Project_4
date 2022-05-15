@@ -9,14 +9,18 @@ const Home = () => {
   const [nextPage,setNextPage]=useState()
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/products/getbydate?p=${counter}`)
+      .get(`http://localhost:5000/products?p=${counter}`)
       .then((result) => {
         setProducts(result.data);
         axios
-            .get(`http://localhost:5000/products/getbydate?p=${counter+1}`)
-            .then((nextResult) => {setNextPage(nextResult.data)})
-            if(nextPage.length <3 )
-        setIsLastPage(true)
+            .get(`http://localhost:5000/products?p=${counter+1}`)
+            .then((nextResult) => {
+                if(nextResult.data <3 ){setIsLastPage(true)
+            
+                }
+                setNextPage(nextResult.data)})
+           
+        
 
       })
       .catch((error) => {});
@@ -26,12 +30,18 @@ const Home = () => {
       {products
         ? products.map((element, index) => {
             return (
-              <p
+                <div className="render">
+                    <div className="container">
+              <img
                 key={element._id}
                 style={{ display: "flex", flexDirection: "row" }}
-              >
-                {element.title}
-              </p>
+                src={element.imageUrl}
+                width="50px"
+            
+             />
+            <p>{element.title}</p>
+            <p>{element.description}</p>    
+            </div>  </div>
             );
           })
         : ""}
@@ -39,8 +49,9 @@ const Home = () => {
         onClick={() => {
         if(!isLastPage){
           setCounter(counter + 1);
-          setState(!state);
           console.log(counter);}
+          setState(!state);
+         
         }}
       >
         next
@@ -48,8 +59,6 @@ const Home = () => {
       <button
         onClick={() => {
           if (counter > 0) {
-              if (isLastPage)
-              setIsLastPage(false)
             setCounter(counter - 1);
             setState(!state);
             console.log(counter);

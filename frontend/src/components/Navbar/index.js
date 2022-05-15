@@ -56,7 +56,7 @@ const Navbar = () => {
       </nav>
     </div>
     <div className="categories">
-      <Link to={"/"}>COMPUTER HARDWARE</Link>
+      <Link to={"/hardware"}>COMPUTER HARDWARE</Link>
       <Link to={"/"}>PC&LAPTOPS</Link>
       <Link to={"/"}>GAMING</Link>
       <Link to={"/"}>PRINTERS&SCANNERS</Link>
