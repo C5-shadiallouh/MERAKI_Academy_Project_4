@@ -112,7 +112,7 @@ const getAllProducts = (req, res) => {
     .catch((err) => res.json(err));}
     else{
       productsModel
-    .count({})
+    .find({})
     .then((result) => {
         
         
