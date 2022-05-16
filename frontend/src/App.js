@@ -7,6 +7,7 @@ import Home from "./components/Home";
 import AdminPanel from "./components/Adminpanel";
 import AddProduct from "./components/Addproduct";
 import Hardware from "./components/Categories/ComputerHardware"
+import ProductPage from "./components/ProductPage";
 export const loginStatusContext = createContext();
 function App() {
 const [token,setToken]=useState(localStorage.getItem("token"))
@@ -30,6 +31,7 @@ const [state, setState] = useState(false);
       <Route path="/addproducts" element={<AddProduct/>}/>
       <Route path="/hardware" element={<Hardware/>}/>
       <Route path="/products/:category" element={<Hardware/>}/>
+      <Route path="/:elementId" element={<ProductPage/>}/>
       </Routes>
       </loginStatusContext.Provider>
     </div>

@@ -177,6 +177,14 @@ const getProductsByDate = (req, res) => {
     })
     .catch((err) => res.json(err));
 };
+const getProductsById = (req,res)=>{
+  const id=req.params
+  productsModel.findById(id).then((result)=>{
+    res.status(200).json(result)
+  }).catch((err)=>{
+    res.json(err)
+  })
+}
 module.exports = {
   addProduct,
   deleteProductById,

@@ -45,11 +45,11 @@ console.log("products: ",products);
             return (
               
                 <div key={element._id} className="container">
-                  <img
+                  <Link to={`${element._id}`}><img
                     style={{ display: "flex", flexDirection: "row" }}
                     src={element.imageUrl}
                     width="50px"
-                  />
+                  /></Link>
                   <p>{element.title}</p>
                   <p>{element.description}</p>
                   <p>{element.price}</p>
