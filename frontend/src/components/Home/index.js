@@ -37,7 +37,7 @@ const Home = () => {
     }).catch((err)=>{setCount(err)});
 
   }, [state]);
-
+console.log("products: ",products);
   return (
     <div className="products">
       {products
@@ -60,7 +60,6 @@ const Home = () => {
         : ""}
 
       <div className="pagination">
-          {console.log(count)}
         <Link to="#"onClick={() => {
           if (counter > 0) {
             setCounter(counter - 1);
@@ -70,7 +69,7 @@ const Home = () => {
         {count
           ? count.slice(0,Math.ceil(count.length/10)).map((element, index) => {
               return (
-                <Link
+                <Link key={element._id}
                   to="#"
                   onClick={() => {
                     setCounter(index);

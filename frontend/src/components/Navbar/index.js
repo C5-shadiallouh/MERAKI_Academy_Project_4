@@ -5,7 +5,6 @@ import { loginStatusContext } from "../../App";
 const Navbar = () => {
   const { state,setState,path,setPath} =
     useContext(loginStatusContext);
-const [isClicked,setIsClicked]=useState(false)
   const navigate = useNavigate();
    return (
      <div className="navComponent">
@@ -60,9 +59,7 @@ const [isClicked,setIsClicked]=useState(false)
       <Link to={"/hardware"} onClick={()=>{
         
         setPath("/category/hardware")
-        setIsClicked(true)
         setState(!state)
-        console.log(state);
 
       }}>COMPUTER HARDWARE</Link>
       <Link to={"/"}>PC&LAPTOPS</Link>

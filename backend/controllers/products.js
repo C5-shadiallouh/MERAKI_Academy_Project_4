@@ -116,7 +116,7 @@ const getProductsBySubCategory = async (req, res) => {
   const productPerPage= 9
   if (page != undefined)
   {productsModel
-    .find({subcategory})
+    .find(subcategory)
     .skip(page*productPerPage)
     .limit(productPerPage)
     .then((result) => {
@@ -127,7 +127,7 @@ const getProductsBySubCategory = async (req, res) => {
     });}
     else{
       productsModel
-    .find(category)
+    .find(subcategory)
     .then((result) => {
         
         
