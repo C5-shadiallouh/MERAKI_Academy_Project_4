@@ -29,6 +29,13 @@ return(
                 category:category,
                 manufacture:manufacture,
             },{headers:{ Authorization:`Bearer ${token}`}}).then(()=>setMessage("product added successfully")).catch((err)=>setMessage(err.response.message))
+            setTitle("")
+            setDescription("")
+            setImageUrl("")
+            SetPrice("")
+            setCategory("")
+            setSubCategory("")
+            setManufacture("")
         }}>Add product</button>
         {message}
     </div>

@@ -33,6 +33,7 @@ const addProduct = (req, res) => {
       });
     })
     .catch((err) => {
+      console.log(err.errors);
       err.errors.price.path == "price"
         ? res.status(500).json({
             success: false,
@@ -83,9 +84,10 @@ const updateProductById = (req, res) => {
 };
 const getProductsByCategory = async (req, res) => {
   const category = req.params;
-  const page = req.query.p||0
+  const page = req.query.p
   const productPerPage= 9
-  productsModel
+  if (page != undefined)
+  {productsModel
     .find(category)
     .skip(page*productPerPage)
     .limit(productPerPage)
@@ -94,7 +96,45 @@ const getProductsByCategory = async (req, res) => {
     })
     .catch((err) => {
       res.json(err);
-    });
+    });}
+    else{
+      productsModel
+    .find(category)
+    .then((result) => {
+        
+        
+      res.status(200).json(result)
+    })
+    .catch((err) => res.json(err));
+    }
+};
+const getProductsBySubCategory = async (req, res) => {
+  const subcategory = req.params;
+  const category = req.params;
+
+  const page = req.query.p
+  const productPerPage= 9
+  if (page != undefined)
+  {productsModel
+    .find({subcategory})
+    .skip(page*productPerPage)
+    .limit(productPerPage)
+    .then((result) => {
+      res.status(200).json(result);
+    })
+    .catch((err) => {
+      res.json(err);
+    });}
+    else{
+      productsModel
+    .find(category)
+    .then((result) => {
+        
+        
+      res.status(200).json(result)
+    })
+    .catch((err) => res.json(err));
+    }
 };
 const getAllProducts = (req, res) => {
   const page = req.query.p
@@ -144,4 +184,5 @@ module.exports = {
   getProductsByCategory,
   getAllProducts,
   getProductsByDate,
+  getProductsBySubCategory,
 };

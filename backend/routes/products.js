@@ -5,7 +5,8 @@ const {
   updateProductById,
   getProductsByCategory,
   getAllProducts,
-  getProductsByDate
+  getProductsByDate,
+  getProductsBySubCategory
 } = require("../controllers/products");
 const {authentication}=require("../middleware/authentication")
 const {authorization}=require("../middleware/authorization")
@@ -15,6 +16,7 @@ productsRouter.post("/addproduct",authentication,authorization(false), addProduc
 productsRouter.delete("/delete/:id",authentication,authorization(false), deleteProductById);
 productsRouter.put("/update/:id",authentication,authorization(false), updateProductById);
 productsRouter.get("/category/:category",getProductsByCategory);
+productsRouter.get("/category/:category/:subcategory",getProductsBySubCategory);
 productsRouter.get("/",getAllProducts)
 productsRouter.get("/getbydate",getProductsByDate)
 

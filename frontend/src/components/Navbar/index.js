@@ -5,17 +5,16 @@ import { loginStatusContext } from "../../App";
 const Navbar = () => {
   const { state,setState,path,setPath} =
     useContext(loginStatusContext);
-    const {}=useContext(loginStatusContext)
 const [isClicked,setIsClicked]=useState(false)
   const navigate = useNavigate();
    return (
      <div className="navComponent">
     <div className="navbar">
        <div className="logo">
-      <Link to={"/"}>
+      <Link to={"/"} >
         <img
           src="http://simpleicon.com/wp-content/uploads/rocket.png"
-          width={"80px"}
+          width={"80px"} 
         />
       </Link>
       </div>
@@ -58,11 +57,13 @@ const [isClicked,setIsClicked]=useState(false)
       </nav>
     </div>
     <div className="categories">
-      <Link to={"/"} onClick={()=>{
+      <Link to={"/hardware"} onClick={()=>{
         
-        setPath("/category/pclaptop")
+        setPath("/category/hardware")
         setIsClicked(true)
         setState(!state)
+        console.log(state);
+
       }}>COMPUTER HARDWARE</Link>
       <Link to={"/"}>PC&LAPTOPS</Link>
       <Link to={"/"}>GAMING</Link>
@@ -70,10 +71,7 @@ const [isClicked,setIsClicked]=useState(false)
       <Link to={"/"}>SOFTWARE</Link>
     </div>
      
-   <div style={isClicked?{display:"flex"}:{display:"none"}}>
-   <p>cpu</p>
-    <p>gpu</p>
-   </div>
+   
     </div>
   );
 };

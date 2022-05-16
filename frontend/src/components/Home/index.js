@@ -11,8 +11,10 @@ const Home = () => {
   const [check, setCheck] = useState(true);
   const { products, setProducts, path, setPath, state, setState } =
     useContext(loginStatusContext);
+    
     const[page,setPage]=useState()
   useEffect(() => {
+    setPath("")
     axios
       .get(`http://localhost:5000/products${path}?p=${counter}`)
       .then((result) => {
@@ -41,8 +43,8 @@ const Home = () => {
       {products
         ? products.map((element, index) => {
             return (
-              <div key={element._id} className="render">
-                <div className="container">
+              
+                <div key={element._id} className="container">
                   <img
                     style={{ display: "flex", flexDirection: "row" }}
                     src={element.imageUrl}
@@ -50,16 +52,23 @@ const Home = () => {
                   />
                   <p>{element.title}</p>
                   <p>{element.description}</p>
-                </div>{" "}
-              </div>
+                  <p>{element.price}</p>
+                </div>
+             
             );
           })
         : ""}
 
       <div className="pagination">
-        <Link to="#">&laquo;</Link>
+          {console.log(count)}
+        <Link to="#"onClick={() => {
+          if (counter > 0) {
+            setCounter(counter - 1);
+            setState(!state);
+          }
+        }} >&laquo; </Link>
         {count
-          ? count.slice(0,Math.ceil(count.length/9)).map((element, index) => {
+          ? count.slice(0,Math.ceil(count.length/10)).map((element, index) => {
               return (
                 <Link
                   to="#"
@@ -73,7 +82,12 @@ const Home = () => {
               );
             })
           : ""}
-        <Link to="#">&raquo;</Link>
+        <Link to="#" onClick={() => {
+          if (!isLastPage) {
+            setCounter(counter + 1);
+          }
+          setState(!state);
+        }}>&raquo;</Link>
         {/* <Link to="#">&laquo;</Link>
   <Link to="#">1</Link>
   <Link to="#">2</Link>
@@ -84,26 +98,7 @@ const Home = () => {
   <Link to="#">&raquo;</Link> */}
       </div>
 
-      <button
-        onClick={() => {
-          if (!isLastPage) {
-            setCounter(counter + 1);
-          }
-          setState(!state);
-        }}
-      >
-        next
-      </button>
-      <button
-        onClick={() => {
-          if (counter > 0) {
-            setCounter(counter - 1);
-            setState(!state);
-          }
-        }}
-      >
-        previous
-      </button>
+     
     </div>
   );
 };
