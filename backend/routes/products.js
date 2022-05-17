@@ -6,7 +6,8 @@ const {
   getProductsByCategory,
   getAllProducts,
   getProductsByDate,
-  getProductsBySubCategory
+  getProductsBySubCategory,
+  getProductsById
 } = require("../controllers/products");
 const {authentication}=require("../middleware/authentication")
 const {authorization}=require("../middleware/authorization")
@@ -19,5 +20,6 @@ productsRouter.get("/category/:category",getProductsByCategory);
 productsRouter.get("/category/:category/:subcategory",getProductsBySubCategory);
 productsRouter.get("/",getAllProducts)
 productsRouter.get("/getbydate",getProductsByDate)
+productsRouter.get("/:id",getProductsById)
 
 module.exports = productsRouter;

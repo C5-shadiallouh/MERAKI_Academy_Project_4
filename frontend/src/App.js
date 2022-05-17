@@ -32,6 +32,7 @@ const [state, setState] = useState(false);
       <Route path="/hardware" element={<Hardware/>}/>
       <Route path="/products/:category" element={<Hardware/>}/>
       <Route path="/:elementId" element={<ProductPage/>}/>
+      <Route path="hardware/:elementId" element={<ProductPage/>}/>
       </Routes>
       </loginStatusContext.Provider>
     </div>
