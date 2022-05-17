@@ -29,7 +29,12 @@ const removeFromCart = (req, res) => {
 };
 const getCart=(req,res)=>{
     const userId=req.token.id
-    userModel.findById(userId).populate("cart").then((result)=>{res.status(200).json(result.cart)})
+    userModel.findById(userId).populate({
+      path : 'cart',
+      populate : {
+        path : 'product'
+      }
+    }).then((result)=>{res.status(200).json(result.cart)})
 }
 
 module.exports = { addToCart, removeFromCart,getCart };
