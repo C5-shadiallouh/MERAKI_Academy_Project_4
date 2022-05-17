@@ -2,11 +2,14 @@ const userModel = require("../models/users");
 const cartModel = require("../models/cart");
 
 const addToCart = (req, res) => {
-  const userId = req.params.id;
+  const userId = req.token.id;
   const product = req.body.product;
+  const {quantity,total}=req.body
   const addItemToCart = new cartModel({
     user: req.token.id,
     product,
+    quantity,
+    total,
   });
   addItemToCart.save().then((result) => {
     console.log(req.token);
@@ -25,8 +28,8 @@ const removeFromCart = (req, res) => {
   ;
 };
 const getCart=(req,res)=>{
-    const userId=req.params.id
-    userModel.findById(userId).then((result)=>{res.status(200).json(result)})
+    const userId=req.token.id
+    userModel.findById(userId).populate("cart").then((result)=>{res.status(200).json(result.cart)})
 }
 
 module.exports = { addToCart, removeFromCart,getCart };
