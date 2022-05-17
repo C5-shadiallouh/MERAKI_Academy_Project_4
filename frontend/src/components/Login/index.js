@@ -26,7 +26,7 @@ import { loginStatusContext } from '../../App';
         setToken(result.data.token)
         setIsLoggedIn(true)
         setIsAdmin(result.data.isAdmin)
-//navigate("/")
+navigate("/")
       })
       .catch((err)=>{
         setMessage(err.response.data)

@@ -19,13 +19,15 @@ const addToCart = (req, res) => {
   });
 };
 const removeFromCart = (req, res) => {
-  const userId = req.params.id;
-  const cartId = req.body.cartId;
-
+  const userId = req.token.id;
+  const cartId = req.params.id
+  console.log(req.body);
   userModel
-      .updateOne({ _id: userId }, { $pull: { cart: cartId } })
-      .then((result)=>res.json(result));
-  ;
+      .updateOne({ _id: userId}, { $pull: { cart: cartId } })
+      .then((result)=>res.json(
+        result))
+      .catch((err)=>res.json(err))
+  
 };
 const getCart=(req,res)=>{
     const userId=req.token.id

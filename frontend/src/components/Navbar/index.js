@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "./style.css";
 import { loginStatusContext } from "../../App";
 const Navbar = () => {
-  const { state,setState,path,setPath} =
+  const { state,setState,path,setPath,setToken,setIsLoggedIn,setIsAdmin} =
     useContext(loginStatusContext);
   const navigate = useNavigate();
    return (
@@ -45,10 +45,10 @@ const Navbar = () => {
             : { display: "none" }
         }
         onClick={() => {
-          localStorage.setItem("token", null);
-          localStorage.setItem("isLoggedIn", false);
-          localStorage.setItem("isAdmin", false);
-          navigate("/");
+          setToken(null);
+           setIsLoggedIn(false);
+          setIsAdmin(false);
+          
         }}
       >
         logout

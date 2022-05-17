@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import axios from "axios";
 
 const Register = () => {
-  const [ firstName, setFirstName ] = useState("");
-  const [ lastName, setLastName ] = useState("");
-  const [ phone, setPhone ] = useState("");
-  const [ city, setCity ] = useState("");
-  const [ password, setPassword ] = useState("");
-  const [ email, setEmail ] = useState("");
-  const [ message, setMessage ] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [city, setCity] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
   return (
     <div>
       Register
@@ -16,7 +16,6 @@ const Register = () => {
         type="text"
         placeholder="firstName"
         onChange={(e) => {
-          
           setFirstName(e.target.value);
         }}
       />
