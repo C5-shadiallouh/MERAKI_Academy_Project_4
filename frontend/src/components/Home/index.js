@@ -37,28 +37,30 @@ const Home = () => {
     }).catch((err)=>{setCount(err)});
 
   }, [state]);
-console.log("products: ",products);
+console.log("products: ",count);
   return (
     <div className="products">
+      <div  className="container">
       {products
         ? products.map((element, index) => {
             return (
               
-                <div key={element._id} className="container">
-                  <Link to={`${element._id}`}><img
-                    style={{ display: "flex", flexDirection: "row" }}
+                
+                  <div key={element._id} className="subcontainer">
+                  <Link to={`${element._id}`}><img className="productimage"
+                   
                     src={element.imageUrl}
-                    width="50px"
-                  /></Link>
-                  <p>{element.title}</p>
+                    width="300px"
+                  /><p className="title">{element.title}</p></Link>
+                  
                   <p>{element.description}</p>
-                  <p>{element.price}</p>
+                  <p className="price">{element.price}JOD</p>
                 </div>
              
             );
           })
         : ""}
-
+</div>
       <div className="pagination">
         <Link to="#"onClick={() => {
           if (counter > 0) {
@@ -67,7 +69,7 @@ console.log("products: ",products);
           }
         }} >&laquo; </Link>
         {count
-          ? count.slice(0,Math.ceil(count.length/10)).map((element, index) => {
+          ? count.slice(0,Math.ceil(count.length/9)).map((element, index) => {
               return (
                 <Link key={element._id}
                   to="#"

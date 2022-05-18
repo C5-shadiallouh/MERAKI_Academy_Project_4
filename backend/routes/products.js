@@ -7,19 +7,38 @@ const {
   getAllProducts,
   getProductsByDate,
   getProductsBySubCategory,
-  getProductsById
+  getProductsById,
+  createComments,
 } = require("../controllers/products");
-const {authentication}=require("../middleware/authentication")
-const {authorization}=require("../middleware/authorization")
+const { authentication } = require("../middleware/authentication");
+const { authorization } = require("../middleware/authorization");
 const productsRouter = express.Router();
 
-productsRouter.post("/addproduct",authentication,authorization(false), addProduct);
-productsRouter.delete("/delete/:id",authentication,authorization(false), deleteProductById);
-productsRouter.put("/update/:id",authentication,authorization(false), updateProductById);
-productsRouter.get("/category/:category",getProductsByCategory);
-productsRouter.get("/category/:category/:subcategory",getProductsBySubCategory);
-productsRouter.get("/",getAllProducts)
-productsRouter.get("/getbydate",getProductsByDate)
-productsRouter.get("/:id",getProductsById)
-
+productsRouter.post(
+  "/addproduct",
+  authentication,
+  authorization(false),
+  addProduct
+);
+productsRouter.delete(
+  "/delete/:id",
+  authentication,
+  authorization(false),
+  deleteProductById
+);
+productsRouter.put(
+  "/update/:id",
+  authentication,
+  authorization(false),
+  updateProductById
+);
+productsRouter.get("/category/:category", getProductsByCategory);
+productsRouter.get(
+  "/category/:category/:subcategory",
+  getProductsBySubCategory
+);
+productsRouter.get("/", getAllProducts);
+productsRouter.get("/getbydate", getProductsByDate);
+productsRouter.get("/:id", getProductsById);
+productsRouter.post("/:id/comments",authentication,createComments);
 module.exports = productsRouter;

@@ -3,23 +3,54 @@ import React,{useContext, useEffect} from "react";
 import { Link } from "react-router-dom";
 import { loginStatusContext } from "../../../App";
 import Home from "../../Home";
+import "./style.css";
 const Hardware= ()=>{
 const {setPath,state,setState,setProducts,path}=useContext(loginStatusContext)
 
     return(
-        <div>
+        <div className="hardware">
+            
         <div className="subCat"> 
-        <p>cpu</p>
-        <p onClick={()=>{
+        <div className="subs" onClick={()=>{
+            setPath("/category/hardware/cpu")
+            setState(!state)
+        }}>
+            <img src="https://citycenter.jo/image/cachewebp/catalog/1-1-2019/gaming%20cpu-160x100.webp"/>
+        <p >cpu</p>
+        </div>
+        <div className="subs" onClick={()=>{
             setPath("/category/hardware/gpu")
             setState(!state)
-        }}>Graphic cards</p>
-        
+        }}>
+            <img src="https://citycenter.jo/image/cachewebp/catalog/1-1-2019/gaming%20gpu-160x100.webp"/>
+        <p>Graphic cards</p>
+        </div>
+        <div className="subs">
+        <img src="https://citycenter.jo/image/cachewebp/catalog/1-1-2019/gaming%20motherboard-160x100.webp"/>
+        <p>Motherboard</p>
+        </div>
+        <div className="subs">
+        <img src="https://citycenter.jo/image/cachewebp/catalog/1-1-2019/gaming%20memory-160x100.webp"/>
+        <p>Memory - RAM</p>
+        </div>
+        <div className="subs">
+        <img src="https://citycenter.jo/image/cachewebp/catalog/1-1-2019/gaming%20custom-160x100.webp"/>
+        <p>Case & Chassis</p>
+        </div>
+        <div className="subs">
+        <img src="https://citycenter.jo/image/cachewebp/catalog/1-1-2019/gaming%20power-160x100.webp"/>
+        <p>Power Supply</p>
+        </div>
+        <div className="subs">
+        <img src="https://citycenter.jo/image/cachewebp/catalog/category-images/gaming%20internal%20ssd-160x100.webp"/>
+        <p>SSD ( Solid State Drive )</p>
+        </div>
         </div>
         <div className="products">
            
     <Home/>
         </div>
+
         </div>
     )
 }

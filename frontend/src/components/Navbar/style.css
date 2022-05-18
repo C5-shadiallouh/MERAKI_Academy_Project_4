@@ -3,19 +3,71 @@
     padding: 0px;
     box-sizing: border-box;
 }
+*:focus {
+    outline: none;
+}
 .navComponent{
+    background-color:#17161c ;
     display: flex;
     flex-direction: column;
 }
 .navbar{
+    margin: 50px;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    align-items: center;
 }
-a{
-    display: inline;
-    margin: 20px;
+.navbar a{
+    display: flex;
+    flex-direction: row;
+    margin-right: 20px;
+    flex-wrap: nowrap;
+    text-decoration: none;
+    color: white;
     
 }
 .categories{
-    display: flex
+    display: flex;
+    margin-left: 50px;
 }
+.categories a{
+    text-decoration: none;
+    color: white;
+    margin-left: 20px;
+    padding: 20px;
+}
+.categories a :active{
+    
+   background-color: aqua;
+}
+.logo img{
+  width: 40%;
+}
+.searchBar{
+    display: flex;
+    width: max-content;
+    height: max-content;
+}
+.searchBar button {
+    float: right;
+    padding: 6px 10px;
+    margin-top: 8px;
+    margin-right: 16px;
+    background: #ddd;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+  }
+  .searchInput{
+      width: 100%;
+    padding: 6px;
+    margin-top: 8px;
+    font-size: 17px;
+    border: none;
+  }
+  .searchInput :active{
+outline: none;
+  }
+  .links{
+      display: flex;
+  }

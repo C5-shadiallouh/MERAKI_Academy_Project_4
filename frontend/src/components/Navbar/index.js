@@ -2,8 +2,10 @@ import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./style.css";
 import { loginStatusContext } from "../../App";
+import {FaSearch} from "react-icons/fa"
+import Search from "../SearchBar";
 const Navbar = () => {
-  const { state,setState,path,setPath,setToken,setIsLoggedIn,setIsAdmin} =
+  const { state,setState,path,setPath,setToken,setIsLoggedIn,setIsAdmin,subtotal,cartLength} =
     useContext(loginStatusContext);
   const navigate = useNavigate();
    return (
@@ -12,15 +14,17 @@ const Navbar = () => {
        <div className="logo">
       <Link to={"/"} >
         <img
-          src="http://simpleicon.com/wp-content/uploads/rocket.png"
-          width={"80px"} 
+          src="https://i.ibb.co/S0gVjdk/merakipc.png"
+           
         />
       </Link>
       </div>
-      <input placeholder="search" />
-      <button> search</button>
+      <div className="searchBar">
+        <Search/>
+      <button> <FaSearch/></button>
+      </div>
       <nav>
-      <div
+      <div className="links"
         style={
           localStorage.getItem("isLoggedIn") == "true"
             ? { display: "none" }
@@ -31,12 +35,13 @@ const Navbar = () => {
         <Link to={"/login"}>login</Link>
         <Link to={"/register"}>register</Link>
       </div>
+      <div className="links">
       <Link to={"/adminpanel"} style={
           localStorage.getItem("isAdmin") == "true"
             ? { display: "flex" }
             : { display: "none" }
         }>admin panel</Link>
-      <Link to={"/cart"}>cart</Link>
+      <Link to={"/cart"}>cart {cartLength}|{subtotal}</Link>
       <Link
         to={"/"}
         style={
@@ -53,6 +58,7 @@ const Navbar = () => {
       >
         logout
       </Link>
+      </div>
       </nav>
     </div>
     <div className="categories">

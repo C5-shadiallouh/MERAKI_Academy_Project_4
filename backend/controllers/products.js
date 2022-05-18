@@ -1,5 +1,5 @@
 const productsModel = require("../models/product");
-
+const commentsModel = require("../models/comments")
 const addProduct = (req, res) => {
   const {
     title,
@@ -179,12 +179,53 @@ const getProductsByDate = (req, res) => {
 };
 const getProductsById = (req,res)=>{
   const id=req.params.id
-  productsModel.findById(id).then((result)=>{
+  productsModel.findById(id).populate({
+    path : 'comments',
+    populate : {
+      path : 'commenter'
+    }
+  }).then((result)=>{
     res.status(200).json(result)
   }).catch((err)=>{
     res.status(404).json(err)
   })
 }
+const createComments = (req, res) => {
+  const idNum = req.params.id;
+  const commenter = req.token.id
+
+  const { comment } = req.body;
+  const newComment = new commentsModel({
+    comment,
+    commenter,
+  });
+  newComment.save().then((commentResult) => {
+    productsModel
+      .findOne({ _id: idNum })
+      .then((found) => {
+        found.comments.push(commentResult);
+        update = found.comments;
+        productsModel
+          .updateOne({ _id: idNum }, { comments: update })
+          .then((result) => {
+            res.status(201).json({
+              success: true,
+              message: "The new comment added",
+              comment: commentResult,
+            });
+          });
+      })
+
+      .catch((err) => {
+        res.status(500).json({
+          success: false,
+          message: "Server Error",
+          err: err.message,
+        });
+      });
+    
+  });
+};
 module.exports = {
   addProduct,
   deleteProductById,
@@ -193,5 +234,6 @@ module.exports = {
   getAllProducts,
   getProductsByDate,
   getProductsBySubCategory,
-  getProductsById
+  getProductsById,
+  createComments
 };
