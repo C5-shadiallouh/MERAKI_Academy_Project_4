@@ -9,6 +9,7 @@ const {
   getProductsBySubCategory,
   getProductsById,
   createComments,
+  createRating
 } = require("../controllers/products");
 const { authentication } = require("../middleware/authentication");
 const { authorization } = require("../middleware/authorization");
@@ -41,4 +42,6 @@ productsRouter.get("/", getAllProducts);
 productsRouter.get("/getbydate", getProductsByDate);
 productsRouter.get("/:id", getProductsById);
 productsRouter.post("/:id/comments",authentication,createComments);
+productsRouter.post("/:id/rate",authentication,createRating);
+
 module.exports = productsRouter;

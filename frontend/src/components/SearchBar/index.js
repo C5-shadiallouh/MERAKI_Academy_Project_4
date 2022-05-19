@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-
+import "./style.css"
 
 const Search=()=>{
     const [array,setArray]=useState()
@@ -10,13 +10,27 @@ const Search=()=>{
         axios.get("http://localhost:5000/products/").then((result)=>{setArray(result.data)})
     },[state])
     return(
-        <input className="searchInput" placeholder="search" onChange={(e)=>{
-            const filtered = array.filter((element)=>{
+        <div className="searchInput">
+            <div className="search">
+        <input className="searchfield" placeholder="search" onChange={(e)=>{
+            setFilter( array.filter((element)=>{
+                if(e.target.value !=="")
                 return element.title.includes(e.target.value.toUpperCase())
-            })
-            console.log(filtered)
+            }))
+            
         }} />
-
+      </div>
+      <div className="filter">
+        {filter?
+        filter.map((element)=>{
+            return(
+                <div >
+                <p>{element.title}</p>
+                </div>
+            )
+        })
+        :""}</div>
+</div>
     )
 }
 export default Search

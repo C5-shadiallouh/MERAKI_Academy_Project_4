@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { loginStatusContext } from "../../App";
-
+import "./style.css"
 const Cart = () => {
 
   
@@ -33,19 +33,25 @@ const Cart = () => {
 
   return (
     <div>
-     
+      {console.log(cart)}
+      <table>
+  <tr>
+    <th>Image</th>
+    <th>Product Name</th>
+    <th>Quantity</th>
+    <th>Remove Product</th>
+    <th>Total</th>
+    
+  </tr>
+  
       {cart
         ? cart.map((element) => {
             return (
-              
-              <div key={element._id}>
-                
-                
-                <img src={element.product.imageUrl} width={"50px"} />
-                <p>{element.quantity}</p>
-                <p>{element.total}</p>
-
-                <button
+              <tr>
+    <td><img src={element.product.imageUrl} width={"200px"} /></td>
+    <td>{element.product.title}</td>
+    <td>{element.quantity}</td>
+    <td> <button className="remove"
                   onClick={() => {
                     setCartLength(cartLength-1)
                     axios
@@ -62,14 +68,62 @@ const Cart = () => {
                   }}
                 >
                   remove
-                </button>
+                </button></td>
+    <td>{element.total}</td>
+  </tr>
+              
                 
-              </div>
+                
+                
+               
+
+               
+                
+              
             );
           })
         : ""}
-      <h1>Subtotal {subtotal}</h1>
+        </table>
+        {subtotal?<h1 className="subtotal">Subtotal {subtotal}</h1>:<h1 className="empty">your cart is empty</h1>}
+      
     </div>
   );
 };
 export default Cart;
+{/* <table>
+  <tr>
+    <th>Company</th>
+    <th>Contact</th>
+    <th>Country</th>
+  </tr>
+  <tr>
+    <td>Alfreds Futterkiste</td>
+    <td>Maria Anders</td>
+    <td>Germany</td>
+  </tr>
+  <tr>
+    <td>Centro comercial Moctezuma</td>
+    <td>Francisco Chang</td>
+    <td>Mexico</td>
+  </tr>
+  <tr>
+    <td>Ernst Handel</td>
+    <td>Roland Mendel</td>
+    <td>Austria</td>
+  </tr>
+  <tr>
+    <td>Island Trading</td>
+    <td>Helen Bennett</td>
+    <td>UK</td>
+  </tr>
+  <tr>
+    <td>Laughing Bacchus Winecellars</td>
+    <td>Yoshi Tannamuri</td>
+    <td>Canada</td>
+  </tr>
+  <tr>
+    <td>Magazzini Alimentari Riuniti</td>
+    <td>Giovanni Rovelli</td>
+    <td>Italy</td>
+  </tr>
+</table> */}

@@ -1,5 +1,6 @@
 const productsModel = require("../models/product");
 const commentsModel = require("../models/comments")
+const rateModel = require("../models/rate")
 const addProduct = (req, res) => {
   const {
     title,
@@ -179,10 +180,17 @@ const getProductsByDate = (req, res) => {
 };
 const getProductsById = (req,res)=>{
   const id=req.params.id
-  productsModel.findById(id).populate({
+  productsModel.findById(id).populate("rate").populate({
+    
     path : 'comments',
+    options: {
+      sort: {
+        date: -1,
+        }
+    },
     populate : {
-      path : 'commenter'
+      path : 'commenter',
+      select: ['firstName', 'lastName']
     }
   }).then((result)=>{
     res.status(200).json(result)
@@ -193,11 +201,12 @@ const getProductsById = (req,res)=>{
 const createComments = (req, res) => {
   const idNum = req.params.id;
   const commenter = req.token.id
-
+  const date = Date.now()
   const { comment } = req.body;
   const newComment = new commentsModel({
     comment,
     commenter,
+    date
   });
   newComment.save().then((commentResult) => {
     productsModel
@@ -226,6 +235,42 @@ const createComments = (req, res) => {
     
   });
 };
+const createRating = (req, res) => {
+  const idNum = req.params.id;
+  const rater = req.token.id
+
+  const { rate } = req.body;
+  const newRate = new rateModel({
+    rate,
+    rater,
+  });
+  newRate.save().then((rateResult) => {
+    productsModel
+      .findOne({ _id: idNum })
+      .then((found) => {
+        found.rate.push(rateResult);
+        update = found.rate;
+        productsModel
+          .updateOne({ _id: idNum }, { rate: update })
+          .then((result) => {
+            res.status(201).json({
+              success: true,
+              message: "The new rate added",
+              rate: rateResult,
+            });
+          });
+      })
+
+      .catch((err) => {
+        res.status(500).json({
+          success: false,
+          message: "Server Error",
+          err: err.message,
+        });
+      });
+    
+  });
+};
 module.exports = {
   addProduct,
   deleteProductById,
@@ -235,5 +280,6 @@ module.exports = {
   getProductsByDate,
   getProductsBySubCategory,
   getProductsById,
-  createComments
+  createComments,
+  createRating
 };

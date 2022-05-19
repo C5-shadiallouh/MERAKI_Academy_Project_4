@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./style.css";
 import { loginStatusContext } from "../../App";
-import {FaSearch} from "react-icons/fa"
+import {FaSearch,FaShoppingCart} from "react-icons/fa"
 import Search from "../SearchBar";
 const Navbar = () => {
   const { state,setState,path,setPath,setToken,setIsLoggedIn,setIsAdmin,subtotal,cartLength} =
@@ -40,8 +40,8 @@ const Navbar = () => {
           localStorage.getItem("isAdmin") == "true"
             ? { display: "flex" }
             : { display: "none" }
-        }>admin panel</Link>
-      <Link to={"/cart"}>cart {cartLength}|{subtotal}</Link>
+        }>admin&nbsp;panel</Link>
+      <Link to={"/cart"}><FaShoppingCart size={25}/>&nbsp;{cartLength}|{subtotal}</Link>
       <Link
         to={"/"}
         style={

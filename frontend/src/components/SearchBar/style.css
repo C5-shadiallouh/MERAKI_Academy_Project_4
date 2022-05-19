@@ -1,0 +1,17 @@
+.searchInput{
+    display: flex;
+    flex-direction: column;
+    width: 1000px;
+    
+}
+.searchfield{
+    width: 100%;
+  padding: 6px;
+  margin-top: 8px;
+  font-size: 17px;
+  border: none;
+}
+.filter p{
+    background-color: white;
+    font-size: small;
+}

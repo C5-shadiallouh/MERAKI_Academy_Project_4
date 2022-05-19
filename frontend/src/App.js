@@ -28,6 +28,7 @@ function App() {
   const [subtotal, setSubtotal] = useState(0);
   const [cart, setCart] = useState();
   const [cartLength, setCartLength] = useState(0);
+  
   return (
     <div className="App">
       <loginStatusContext.Provider

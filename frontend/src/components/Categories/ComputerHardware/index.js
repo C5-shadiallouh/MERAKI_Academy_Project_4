@@ -8,6 +8,7 @@ const Hardware= ()=>{
 const {setPath,state,setState,setProducts,path}=useContext(loginStatusContext)
 
     return(
+        
         <div className="hardware">
             
         <div className="subCat"> 
