@@ -1,0 +1,48 @@
+.addproduct{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 3%;
+}
+.addproduct input {
+    width: 100%;
+    margin: 1%;
+    line-height: 3em;
+}
+.addproduct button {
+    font-size: 1.3em;
+    margin-left: 2%;
+    background-color: #b11616;
+    color: white;
+border: none;
+padding: 10px;
+}
+.addproduct button:hover {
+    
+    background-color: #7d0f0f;
+    color: white;
+    padding: 10px;
+}
+.addproduct button:active {
+    background-color: #b11616;
+    color: white;
+    padding: 10px;
+}
+.addproduct h1 {
+    color: #b11616;
+}
+.addproduct .select {
+    font-size: 0.7em;
+    display: flex;
+    width: 100%;
+}
+.addproduct .select h1 {
+    color: black;
+}
+select{
+    margin-left: 2%;
+    width: 100%;
+    
+}
+

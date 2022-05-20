@@ -28,7 +28,10 @@ function App() {
   const [subtotal, setSubtotal] = useState(0);
   const [cart, setCart] = useState();
   const [cartLength, setCartLength] = useState(0);
-  
+  const [rating, setRating] = useState(0); // initial rating value
+  const [rateArray, setRateArray] = useState("");
+  const [counter, setCounter] = useState(0);
+
   return (
     <div className="App">
       <loginStatusContext.Provider
@@ -50,7 +53,8 @@ function App() {
           cart,
           setCart,
           cartLength,
-          setCartLength,
+          setCartLength,counter, setCounter
+          
         }}
       >
         <Navbar />

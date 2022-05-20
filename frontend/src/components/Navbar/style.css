@@ -10,6 +10,8 @@
     background-color:#17161c ;
     display: flex;
     flex-direction: column;
+    width: 100%;
+    
 }
 .navbar{
     margin: 50px;

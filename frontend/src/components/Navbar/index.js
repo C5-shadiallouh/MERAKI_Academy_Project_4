@@ -65,7 +65,6 @@ const Navbar = () => {
       <Link to={"/hardware"} onClick={()=>{
         
         setPath("/category/hardware")
-        setState(!state)
 
       }}>COMPUTER HARDWARE</Link>
       <Link to={"/"}>PC&LAPTOPS</Link>

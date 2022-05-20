@@ -5,7 +5,7 @@
     grid-template-areas: "title title"
         "image pay""image x""image x" "description description" "commentreview commentreview" "commentsection commentsection";
     margin: 1%;
-    row-gap: 10px;
+    row-gap: 50px;
 
 }
 
@@ -13,7 +13,7 @@
     grid-area: title;
 }
 
-img {
+.productpageimg {
     border-radius: 30px;
     grid-area: image;
 
@@ -84,6 +84,32 @@ padding: 10px;
     
 }
 .commentarea{
-    height: 10%;
+    height: 300px;
     overflow-y: scroll;
+}
+.commentbutton{
+    font-size: 1.3em;
+    background-color: #b11616;
+    color: white;
+border: none;
+padding: 10px;
+}
+@-webkit-keyframes pulsate {
+    0% { 
+        opacity: 0.5;
+    }
+    50% { 
+        opacity: 1.0;
+    }
+    100% { 
+        opacity: 0.5;
+    }
+}
+.nocomment{
+color: #b11616;
+animation: pulsate 3s ease-out;
+animation-iteration-count: infinite; 
+opacity: 0.5;
+
+
 }

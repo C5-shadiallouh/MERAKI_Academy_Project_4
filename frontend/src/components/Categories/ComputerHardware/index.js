@@ -5,14 +5,15 @@ import { loginStatusContext } from "../../../App";
 import Home from "../../Home";
 import "./style.css";
 const Hardware= ()=>{
-const {setPath,state,setState,setProducts,path}=useContext(loginStatusContext)
+const {setPath,state,setState,setProducts,path,setCounter}=useContext(loginStatusContext)
 
     return(
         
         <div className="hardware">
-            
+            {            console.log(path)}
         <div className="subCat"> 
         <div className="subs" onClick={()=>{
+            setCounter(0)
             setPath("/category/hardware/cpu")
             setState(!state)
         }}>
@@ -20,13 +21,20 @@ const {setPath,state,setState,setProducts,path}=useContext(loginStatusContext)
         <p >cpu</p>
         </div>
         <div className="subs" onClick={()=>{
+                        setCounter(0)
+
             setPath("/category/hardware/gpu")
             setState(!state)
         }}>
             <img src="https://citycenter.jo/image/cachewebp/catalog/1-1-2019/gaming%20gpu-160x100.webp"/>
         <p>Graphic cards</p>
-        </div>
-        <div className="subs">
+        </div  >
+        <div className="subs"onClick={()=>{
+                        setCounter(0)
+
+            setPath("/category/hardware/motherboard")
+            setState(!state)
+        }}>
         <img src="https://citycenter.jo/image/cachewebp/catalog/1-1-2019/gaming%20motherboard-160x100.webp"/>
         <p>Motherboard</p>
         </div>

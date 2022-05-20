@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
+import "./style.css"
 const AddProduct=()=>{
     const [title,setTitle]=useState("")
     const [description,setDescription]=useState("")
@@ -10,15 +11,53 @@ const AddProduct=()=>{
     const [manufacture,setManufacture]=useState("")
     const token=localStorage.getItem("token")
     const [message,setMessage]=useState("")
+    const[state,setState]=useState(false)
+    useEffect(()=>{
+        console.log(category);
+    },[state])
 return(
-    <div>
-        <input type={"text"} placeholder={"title"} onChange={(e)=>{ setTitle(e.target.value)}}/>
-        <input type={"text"} placeholder={"description"} onChange={(e)=>{setDescription(e.target.value)}}/>
-        <input type={"text"} placeholder={"imageUrl"} onChange={(e)=>{setImageUrl(e.target.value)}}/>
-        <input type={"number"} placeholder={"price"} onChange={(e)=>{SetPrice(e.target.value)}}/>
-        <input type={"text"} placeholder={"category"} onChange={(e)=>{setCategory(e.target.value)}}/>
-        <input type={"text"} placeholder={"sub category"} onChange={(e)=>{setSubCategory(e.target.value)}}/>
-        <input type={"text"} placeholder={"manufacture"} onChange={(e)=>{setManufacture(e.target.value)}}/>
+    <div className="addproduct">
+        <h1>{message}</h1>
+        <input type={"text"} value={title} placeholder={"title"} onChange={(e)=>{ setTitle(e.target.value)
+        setMessage("")
+        }}/>
+        <input type={"text"} value={description} placeholder={"description"} onChange={(e)=>{setDescription(e.target.value)}}/>
+        <input type={"text"} value={imageUrl}placeholder={"imageUrl"} onChange={(e)=>{setImageUrl(e.target.value)}}/>
+        <input type={"number"} value={price} placeholder={"price"} onChange={(e)=>{SetPrice(e.target.value)}}/>
+        {/* <input type={"text"} value={category}placeholder={"category"} onChange={(e)=>{setCategory(e.target.value)}}/>
+        <input type={"text"} value={subcategory}placeholder={"sub category"} onChange={(e)=>{setSubCategory(e.target.value)}}/>
+        <input type={"text"} value={manufacture}placeholder={"manufacture"} onChange={(e)=>{setManufacture(e.target.value)}}/> */}
+         <div className="select"><h1>Category:</h1><select name="list" id="list" onChange={(e)=>{setCategory(e.target.value)
+        setState(!state)}}>
+         <option value=""  >select category</option>
+    <option value="hardware" >Hardware</option>
+    <option value="pcLaptop">PcLaptop</option>
+    <option value="gaming">Gaming</option>
+    <option value="printerScanner">PrinterScanner</option>
+  </select>
+  </div>
+  {category ==="hardware"?<div className="select"><h1>type:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h1><select name="list" id="list" onChange={(e)=>{setSubCategory(e.target.value)}}>
+  
+  <option value=""  >select type</option>
+
+  <option value="cpu" >Processor</option>
+
+<option value="gpu">Graphic Card</option>
+<option value="motherboard">Motherboard</option>
+<option value="ram">Memory-Ram</option>
+<option value="case">Cases</option>
+<option value="powersupply">Power supply</option>
+<option value="ssd">SSD</option>
+
+</select>
+</div>:""
+
+}
+
+
+
+  
+  
         <button onClick={()=>{
             axios.post("http://localhost:5000/products/addproduct",{
                 title:title,
@@ -28,17 +67,17 @@ return(
                 subcategory:subcategory,
                 category:category,
                 manufacture:manufacture,
-            },{headers:{ Authorization:`Bearer ${token}`}}).then(()=>{setMessage("product added successfully")
-        }).catch((err)=>setMessage(err.response.message))
+            },{headers:{ Authorization:`Bearer ${token}`}}).then((result)=>{setMessage("Product Added Successfully")
+        }).catch((err)=>setMessage("Please Fill All Fields"))
             setTitle("")
             setDescription("")
             setImageUrl("")
             SetPrice("")
-            setCategory("")
+            /* setCategory("")
             setSubCategory("")
-            setManufacture("")
+            setManufacture("") */
         }}>Add product</button>
-        {message}
+        
     </div>
 )
 }

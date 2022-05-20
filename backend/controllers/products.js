@@ -35,13 +35,7 @@ const addProduct = (req, res) => {
     })
     .catch((err) => {
       console.log(err.errors);
-      err.errors.price.path == "price"
-        ? res.status(500).json({
-            success: false,
-            cause: "CastError",
-            message: "price type is not number",
-          })
-        : res.status(500).json({
+     res.status(500).json({
             success: false,
             cause: "internal server error",
             message: err,
@@ -180,7 +174,15 @@ const getProductsByDate = (req, res) => {
 };
 const getProductsById = (req,res)=>{
   const id=req.params.id
-  productsModel.findById(id).populate("rate").populate({
+  productsModel.findById(id).populate({
+    
+    path : 'rate',
+    
+    populate : {
+      path : 'rater',
+      select: ['firstName', 'lastName']
+    }
+  }).populate({
     
     path : 'comments',
     options: {
@@ -195,6 +197,7 @@ const getProductsById = (req,res)=>{
   }).then((result)=>{
     res.status(200).json(result)
   }).catch((err)=>{
+    
     res.status(404).json(err)
   })
 }
@@ -202,11 +205,12 @@ const createComments = (req, res) => {
   const idNum = req.params.id;
   const commenter = req.token.id
   const date = Date.now()
-  const { comment } = req.body;
+  const { comment,rate } = req.body;
   const newComment = new commentsModel({
     comment,
     commenter,
-    date
+    date,
+    rate,
   });
   newComment.save().then((commentResult) => {
     productsModel
@@ -238,7 +242,7 @@ const createComments = (req, res) => {
 const createRating = (req, res) => {
   const idNum = req.params.id;
   const rater = req.token.id
-
+  const isRated= false
   const { rate } = req.body;
   const newRate = new rateModel({
     rate,
@@ -246,10 +250,20 @@ const createRating = (req, res) => {
   });
   newRate.save().then((rateResult) => {
     productsModel
-      .findOne({ _id: idNum })
+      .findOne({ _id: idNum }).populate({
+    
+        path : 'rate',
+        
+       
+      })
       .then((found) => {
+        const filtered=found.rate.filter((element)=>{
+          return element.rater==rater
+        })
+        if(!filtered.length){
         found.rate.push(rateResult);
         update = found.rate;
+
         productsModel
           .updateOne({ _id: idNum }, { rate: update })
           .then((result) => {
@@ -257,9 +271,14 @@ const createRating = (req, res) => {
               success: true,
               message: "The new rate added",
               rate: rateResult,
+              
             });
           });
-      })
+      }
+    else{
+      res.status(403).json("not allowed")
+    }
+    })
 
       .catch((err) => {
         res.status(500).json({

@@ -4,17 +4,15 @@ import "./style.css";
 import { loginStatusContext } from "../../App";
 import { Link } from "react-router-dom";
 const Home = () => {
-  const [counter, setCounter] = useState(0);
   const [isLastPage, setIsLastPage] = useState(false);
   const [nextPage, setNextPage] = useState();
   const [count, setCount] = useState();
   const [check, setCheck] = useState(true);
-  const { products, setProducts, path, setPath, state, setState } =
+  const { products, setProducts, path, setPath, state, setState,counter,setCounter } =
     useContext(loginStatusContext);
     
     const[page,setPage]=useState()
   useEffect(() => {
-    setPath("")
     axios
       .get(`http://localhost:5000/products${path}?p=${counter}`)
       .then((result) => {
@@ -37,7 +35,6 @@ const Home = () => {
     }).catch((err)=>{setCount(err)});
 
   }, [state]);
-console.log("products: ",count);
   return (
     <div className="products">
       <div  className="container">
@@ -64,6 +61,8 @@ console.log("products: ",count);
       <div className="pagination">
         <Link to="#"onClick={() => {
           if (counter > 0) {
+            console.log(path);
+
             setCounter(counter - 1);
             setState(!state);
           }
@@ -74,6 +73,8 @@ console.log("products: ",count);
                 <Link key={element._id}
                   to="#"
                   onClick={() => {
+                    console.log(path);
+
                     setCounter(index);
                     setState(!state);
                   }}
@@ -84,6 +85,7 @@ console.log("products: ",count);
             })
           : ""}
         <Link to="#" onClick={() => {
+          console.log(path);
           if (!isLastPage) {
             setCounter(counter + 1);
           }
