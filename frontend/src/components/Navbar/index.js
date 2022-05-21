@@ -4,19 +4,19 @@ import "./style.css";
 import { loginStatusContext } from "../../App";
 import {FaSearch,FaShoppingCart} from "react-icons/fa"
 import Search from "../SearchBar";
+import { GoogleLogout,logout } from 'react-google-login';
 const Navbar = () => {
-  const { state,setState,path,setPath,setToken,setIsLoggedIn,setIsAdmin,subtotal,cartLength} =
+  const { state,setState,path,setPath,setToken,setIsLoggedIn,setIsAdmin,subtotal,cartLength,setCounter} =
     useContext(loginStatusContext);
+    const [isClicked,setIsClicked]=useState(false)
   const navigate = useNavigate();
    return (
      <div className="navComponent">
     <div className="navbar">
        <div className="logo">
-      <Link to={"/"} >
-        <img
-          src="https://i.ibb.co/S0gVjdk/merakipc.png"
-           
-        />
+      <Link to={"/"} onClick={()=>{setPath("") 
+      setCounter(0)}} >
+        <h1>MERAKI <span className="forcom">For COMPUTERS</span></h1>
       </Link>
       </div>
       <div className="searchBar">
@@ -26,7 +26,7 @@ const Navbar = () => {
       <nav>
       <div className="links"
         style={
-          localStorage.getItem("isLoggedIn") == "true"
+          localStorage.getItem("isLoggedIn") == "true" && localStorage.getItem("token") != "null" && localStorage.getItem("token") != "undefined"
             ? { display: "none" }
             : { display: "flex" }
         }
@@ -45,7 +45,7 @@ const Navbar = () => {
       <Link
         to={"/"}
         style={
-          localStorage.getItem("isLoggedIn") == "true"
+          localStorage.getItem("isLoggedIn") == "true"  && localStorage.getItem("token") != "null" && localStorage.getItem("token") != "undefined"
             ? { display: "flex" }
             : { display: "none" }
         }
@@ -58,19 +58,20 @@ const Navbar = () => {
       >
         logout
       </Link>
+      
       </div>
       </nav>
     </div>
-    <div className="categories">
-      <Link to={"/hardware"} onClick={()=>{
-        
+    <div className="categories" >
+      <Link className="cat" to={"/hardware"} onClick={()=>{
+        setCounter(0)
         setPath("/category/hardware")
 
       }}>COMPUTER HARDWARE</Link>
-      <Link to={"/"}>PC&LAPTOPS</Link>
-      <Link to={"/"}>GAMING</Link>
-      <Link to={"/"}>PRINTERS&SCANNERS</Link>
-      <Link to={"/"}>SOFTWARE</Link>
+      <Link className="cat" to={"/"}>PC&LAPTOPS</Link>
+      <Link className="cat" to={"/"}>GAMING</Link>
+      <Link className="cat" to={"/"}>PRINTERS&SCANNERS</Link>
+      <Link className="cat" to={"/"}>SOFTWARE</Link>
     </div>
      
    

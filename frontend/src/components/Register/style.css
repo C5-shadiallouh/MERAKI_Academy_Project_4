@@ -1,0 +1,42 @@
+.register{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5em;
+}
+.register input {
+    width: 100%;
+    margin: 1%;
+    line-height: 2em;
+    font-size: 1.2em;
+}
+.register button {
+    margin-top: 1%;
+    font-size: 1.3em;
+    margin-left: 2%;
+    background-color: #b11616;
+    color: white;
+border: none;
+padding: 10px;
+}
+.register button:hover {
+    
+    background-color: #7d0f0f;
+    color: white;
+    padding: 10px;
+}
+.register button:active {
+    background-color: #b11616;
+    color: white;
+    padding: 10px;
+}
+.register h1 {
+    color: #b11616;
+}
+.register h2{
+    padding: 4px;
+    color: white;
+    background-color:#b11616 ;
+    border-radius: 5px;
+}

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-
+import "./style.css";
 const Register = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -9,9 +9,13 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [passwordValidation, setPasswordValidation] = useState("");
   return (
-    <div>
-      Register
+    <div className="register">
+      <h1>Register</h1>
+      <h2 style={!message ? { display: "none" } : { display: "flex" }}>
+        {message}
+      </h2>
       <input
         type="text"
         placeholder="firstName"
@@ -51,31 +55,43 @@ const Register = () => {
         type="text"
         placeholder="password"
         onChange={(e) => {
-          setPassword(e.target.value);
+          setPasswordValidation(e.target.value);
+        }}
+      />
+      <input
+        type="text"
+        placeholder=" confirm password"
+        onChange={(e) => {
+          if (passwordValidation == e.target.value) {setPassword(e.target.value);}
+          else {
+          }
         }}
       />
       <button
         onClick={() => {
-          axios
-            .post("http://localhost:5000/users/", {
-              firstName: firstName,
-              lastName: lastName,
-              phone: phone,
-              city: city,
-              password: password,
-              email: email,
-            })
-            .then((result) => {
-              setMessage("Account Registered Successfully");
-            })
-            .catch((err) => {
-              setMessage(err.response.data);
-            });
+          if (passwordValidation == password) {
+            axios
+              .post("http://localhost:5000/users/", {
+                firstName: firstName,
+                lastName: lastName,
+                phone: phone,
+                city: city,
+                password: password,
+                email: email,
+              })
+              .then((result) => {
+               setMessage("Account registered successfully");
+              })
+              .catch((err) => {
+                setMessage(err.response.data);
+              });
+          } else {
+            setMessage("password doesn't mat");
+          }
         }}
       >
         Register
       </button>
-      {message}
     </div>
   );
 };

@@ -230,9 +230,9 @@ const createComments = (req, res) => {
       })
 
       .catch((err) => {
-        res.status(500).json({
+        res.status(403).json({
           success: false,
-          message: "Server Error",
+          message: "forbidden",
           err: err.message,
         });
       });

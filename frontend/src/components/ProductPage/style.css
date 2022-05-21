@@ -22,7 +22,7 @@
 .pay {
     
     border: 1px solid #b11616;
-    grid-area: pay;
+    
     display: grid;
 grid-template-columns: auto;
 grid-template-rows: 50px 50px 200px;
@@ -70,7 +70,7 @@ padding: 10px;
 }
 .addtocart:hover {
     
-    background-color: #7d0f0f;
+    background-color: black;
     color: white;
     padding: 10px;
 }
@@ -105,11 +105,28 @@ padding: 10px;
         opacity: 0.5;
     }
 }
+@keyframes animate {
+    from {background-color: #b11616;
+    color: white;}
+    to {background-color: white;
+    color:#b11616;}
+  }
+  
 .nocomment{
-color: #b11616;
-animation: pulsate 3s ease-out;
-animation-iteration-count: infinite; 
-opacity: 0.5;
+    margin-top: 1%;
+background-color: #b11616;
+color: white;
+width: fit-content;
+padding: 1%;
+animation: animate 4s ease-in-out infinite
 
-
+}
+.cartmessage{
+    margin-top: 30%;
+    margin-left: 20%;
+    background-color: #b11616;
+color: white;
+width: fit-content;
+padding: 1%;
+animation: animate 4s ease-in-out infinite
 }

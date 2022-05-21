@@ -1,3 +1,4 @@
+
 .products{
     display: flex;
     flex-direction: column;
@@ -19,6 +20,19 @@
     
     
      */
+}
+.container a{
+   text-decoration: none;
+   color: #b11616;
+    
+    /* ;
+    
+    
+    
+     */
+}
+.container a:visited{
+    color:#b11616;
 }
 .subcontainer{
     display: flex;
@@ -64,8 +78,8 @@ border-radius: 5px;
   }
   
   .pagination :hover {
-    background-color: #4CAF50;
+    background-color: #b11616;
     color: white;
-    border: 1px solid #4CAF50;
+    border: 1px solid #b11616;
   }
   

@@ -1,9 +1,10 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { loginStatusContext } from "../../App";
 import "./style.css"
 const Cart = () => {
-
+const navigate=useNavigate()
   
   const [state, setState] = useState(false);
   const { token,subtotal,setSubtotal,cart, setCart,cartLength, setCartLength } = useContext(loginStatusContext);
@@ -84,7 +85,7 @@ const Cart = () => {
           })
         : ""}
         </table>
-        {subtotal?<h1 className="subtotal">Subtotal {subtotal}</h1>:<h1 className="empty">your cart is empty</h1>}
+        {subtotal?<div className="subtotal"><div><h1 >Subtotal:&nbsp;{subtotal}</h1><button onClick={()=>{navigate("/payment")}}>Check out</button></div></div>:<h1 className="empty">your cart is empty</h1>}
       
     </div>
   );

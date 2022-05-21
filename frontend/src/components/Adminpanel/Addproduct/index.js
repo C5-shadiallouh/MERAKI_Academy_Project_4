@@ -23,17 +23,19 @@ return(
         }}/>
         <input type={"text"} value={description} placeholder={"description"} onChange={(e)=>{setDescription(e.target.value)}}/>
         <input type={"text"} value={imageUrl}placeholder={"imageUrl"} onChange={(e)=>{setImageUrl(e.target.value)}}/>
-        <input type={"number"} value={price} placeholder={"price"} onChange={(e)=>{SetPrice(e.target.value)}}/>
+        <input type={"number"} value={price} placeholder={"price"} onChange={(e)=>{SetPrice(e.target.value)} }min={1}/>
         {/* <input type={"text"} value={category}placeholder={"category"} onChange={(e)=>{setCategory(e.target.value)}}/>
         <input type={"text"} value={subcategory}placeholder={"sub category"} onChange={(e)=>{setSubCategory(e.target.value)}}/>
         <input type={"text"} value={manufacture}placeholder={"manufacture"} onChange={(e)=>{setManufacture(e.target.value)}}/> */}
          <div className="select"><h1>Category:</h1><select name="list" id="list" onChange={(e)=>{setCategory(e.target.value)
         setState(!state)}}>
+            <optgroup>
          <option value=""  >select category</option>
     <option value="hardware" >Hardware</option>
     <option value="pcLaptop">PcLaptop</option>
     <option value="gaming">Gaming</option>
     <option value="printerScanner">PrinterScanner</option>
+    </optgroup>
   </select>
   </div>
   {category ==="hardware"?<div className="select"><h1>type:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h1><select name="list" id="list" onChange={(e)=>{setSubCategory(e.target.value)}}>

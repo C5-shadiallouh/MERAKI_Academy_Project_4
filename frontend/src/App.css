@@ -2,16 +2,41 @@
 *{
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: content-box;
     font-family: 'Poppins', sans-serif;
 }
+@media (max-width: 480px) {
+    body{
+        
+        width: 100% !important;
+        
+    }
+    .products{
+       
+    }
+    .container{
+        grid-template-columns: auto !important;
+    }
+    .searchInput{
+        width: 45vw !important;
+    }
+    .navComponent{
+        align-items: flex-end !important;
+    }
+    .navbar{
+        display: block !important;
+    }
+    .searchBar{
+        width: auto !important;
+    }
 
+  }
 
 .subCat {
    margin-left:1% ;
    margin-right:1% ; 
  
-    margin-top: 5%;
+    margin-top: 2%;
     border:3px solid black;
     border-radius: 5px;
 
@@ -39,3 +64,30 @@
     color: #b11616
 }
 
+h1{
+    margin: 3%;
+}
+button {
+
+    background-color: #b11616;
+    transition: background-color .4s ease-out;
+
+    border-radius: 5px;
+    border: 3px solid transparent;
+    cursor: pointer;
+    padding: 1rem 6.5rem;
+
+    font-size: 100%;
+    font-family: inherit;
+    color: #fff;
+}
+
+button:focus {
+    outline: none;
+    border-color: black;
+}
+
+button:hover,
+button:focus {
+    background-color: black;
+}

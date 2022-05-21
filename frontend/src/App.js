@@ -12,6 +12,7 @@ import AllProducts from "./components/Adminpanel/Allproducts";
 import Hardware from "./components/Categories/ComputerHardware";
 import ProductPage from "./components/ProductPage";
 import Cart from "./components/cart";
+import PaymentForm from "./components/Payments";
 export const loginStatusContext = createContext();
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
@@ -31,7 +32,7 @@ function App() {
   const [rating, setRating] = useState(0); // initial rating value
   const [rateArray, setRateArray] = useState("");
   const [counter, setCounter] = useState(0);
-
+ 
   return (
     <div className="App">
       <loginStatusContext.Provider
@@ -65,7 +66,7 @@ function App() {
           <Route path="/adminpanel" element={<AdminPanel />} />
           <Route path="/addproducts" element={<AddProduct />} />
           <Route path="/allproducts" element={<AllProducts />} />
-
+          <Route path="/payment" element={<PaymentForm />} />
           <Route path="/products/:category" element={<Hardware />} />
           <Route path="/:elementId" element={<ProductPage />} />
           <Route path="/hardware" element={<Hardware />} />

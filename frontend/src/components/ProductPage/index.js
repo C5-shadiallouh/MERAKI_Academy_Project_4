@@ -23,6 +23,7 @@ const ProductPage = () => {
   const [rateCheck, setRateCheck]=useState()
 
   const [commentMessage, setCommentMessage] = useState("");
+  const [cartMessage, setCartMessage] = useState("");
  const [err,setErr]=useState(false)
   // Catch Rating value
   useEffect(() => {
@@ -45,7 +46,7 @@ if(!err){
     setRating(rate);
     /* axios
       .post(
-        `http://localhost:5000/products/${elementId}/rate`,
+        `https://localhost:5000/products/${elementId}/rate`,
         {
           rate: rate,
         },
@@ -81,6 +82,7 @@ return(<h1>Error 404</h1>)
       <p className="description">{description}</p>
       <div className="pay">
         <h1 className="price">Unit price: {price ? price : ""}JOD</h1>
+        <div style={{display:"flex",flexDirection:"column"}}>
         <div className="quantitydiv">
           <input
             min={1}
@@ -112,13 +114,18 @@ return(<h1>Error 404</h1>)
                   setCartLength(cartLength + 1);
                   setState(!state);
                 })
-                .catch((err) => setMessage(err.response.message));
+                .catch((err) => setCartMessage(<p className="cartmessage">Please login first</p>));
             }}
           >
             add to cart
           </button>
+        
         </div>
-        <h1 className="total">total: {price ? quantity * price : ""}JOD</h1>
+        {cartMessage? cartMessage :""}
+        </div>
+              <h1 className="total">total: {price ? quantity * price : ""}JOD</h1>
+        
+
       </div>
       <div className="commentandreview">
         <textarea
@@ -129,11 +136,16 @@ return(<h1>Error 404</h1>)
             setComment(e.target.value);
           }}
         ></textarea>
+        <p>Add Rating</p>
+        <Rating
+          onClick={handleRating}
+          ratingValue={rating} /* Available Props */
+        />
         <button
           className="commentbutton"
           onClick={() => {
             if (inputValue) {
-              setCommentMessage("");
+              
 
               axios
                 .post(
@@ -147,9 +159,11 @@ return(<h1>Error 404</h1>)
                   }
                 )
                 .then(() => {
+                  
                   setInputValue("");
                   setState(!state);
-                });
+                }).catch((err)=>{
+                  setCommentMessage( <p className="nocomment">Please login first</p>)})
             } else {
               setCommentMessage(
                 <p className="nocomment">Please enter comment first</p>
@@ -157,15 +171,11 @@ return(<h1>Error 404</h1>)
             }
           }}
         >
-          Add comment
+          Add comment and rating
         </button>
-        {inputValue ? "" : commentMessage}
-
-        <p>Add Rating</p>
-        <Rating
-          onClick={handleRating}
-          ratingValue={rating} /* Available Props */
-        />
+        {inputValue ?localStorage.getItem("isLoggedIn")=="true"?"":commentMessage : commentMessage}
+        {/* {localStorage.getItem("isLoggedIn")=="false"?commentMessage:""} */}
+        
       </div>
       <div className="commentsection">
         {commentArray.length ? <h1>Comments</h1> : ""}

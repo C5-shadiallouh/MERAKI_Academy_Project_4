@@ -19,6 +19,9 @@
     justify-content: space-between;
     align-items: center;
 }
+nav{
+    display: flex;
+}
 .navbar a{
     display: flex;
     flex-direction: row;
@@ -34,13 +37,16 @@
 }
 .categories a{
     text-decoration: none;
-    color: white;
-    margin-left: 20px;
-    padding: 20px;
+    box-shadow: inset 0 0 0 0 #b11616;
+  color: white;
+  margin: 0 2.75rem;
+  padding: 0 .25rem;
+  transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
 }
-.categories a :active{
+.categories a:hover{
     
-   background-color: aqua;
+    box-shadow: inset 500px 0 0 0 white;
+  color: #b11616;
 }
 .logo img{
   width: 70%;
@@ -67,4 +73,6 @@ outline: none;
   .links{
       display: flex;
   }
-  
+  .forcom{
+      font-size: 0.6em;
+  }

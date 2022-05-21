@@ -32,7 +32,7 @@ const register = (req, res) => {
             .json("phone number is associated with an existing account")
         : err.code == 11000 && err.keyPattern.email == 1
         ? res.status(409).json("email is associated with an existing account")
-        : res.json(err);
+        : res.status(404).json("Please fill up your information ");
     });
 };
 
@@ -81,7 +81,7 @@ const login = (req, res) => {
         });
       }
       if (result == null) {
-        res.json("phone number or email doesn't exist");
+        res.status(404).json("phone number or email doesn't exist");
       }
     })
     .catch((err) => {

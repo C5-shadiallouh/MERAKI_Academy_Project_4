@@ -32,7 +32,9 @@ text-align: center;  }
   }
   .subtotal{
       display: flex;
-      justify-content: flex-end;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: center;
       margin-right: 10%;
       margin-bottom: 10%;
   }

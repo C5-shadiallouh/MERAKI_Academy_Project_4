@@ -10,7 +10,7 @@ const {setPath,state,setState,setProducts,path,setCounter}=useContext(loginStatu
     return(
         
         <div className="hardware">
-            {            console.log(path)}
+            <h1>Hardware</h1>
         <div className="subCat"> 
         <div className="subs" onClick={()=>{
             setCounter(0)
@@ -38,11 +38,19 @@ const {setPath,state,setState,setProducts,path,setCounter}=useContext(loginStatu
         <img src="https://citycenter.jo/image/cachewebp/catalog/1-1-2019/gaming%20motherboard-160x100.webp"/>
         <p>Motherboard</p>
         </div>
-        <div className="subs">
+        <div className="subs" onClick={()=>{
+            setCounter(0)
+            setPath("/category/hardware/ram")
+            setState(!state)
+        }}>
         <img src="https://citycenter.jo/image/cachewebp/catalog/1-1-2019/gaming%20memory-160x100.webp"/>
         <p>Memory - RAM</p>
         </div>
-        <div className="subs">
+        <div className="subs"onClick={()=>{
+            setCounter(0)
+            setPath("/category/hardware/case")
+            setState(!state)
+        }}>
         <img src="https://citycenter.jo/image/cachewebp/catalog/1-1-2019/gaming%20custom-160x100.webp"/>
         <p>Case & Chassis</p>
         </div>

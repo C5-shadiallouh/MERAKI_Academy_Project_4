@@ -15,8 +15,8 @@ const addToCart = (req, res) => {
     console.log(req.token);
     userModel
       .updateOne({ _id: userId }, { $push: { cart: result._id } })
-      .then(res.json(result));
-  });
+      .then(res.json(result))
+  }).catch((err)=>(res.status(403).json("please login")))
 };
 const removeFromCart = (req, res) => {
   const userId = req.token.id;
