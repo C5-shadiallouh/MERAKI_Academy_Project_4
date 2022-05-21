@@ -10,8 +10,7 @@ const productsSchema = new mongoose.Schema({
   manufacture: { type: String },
   comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comments" }],
   rate: [{ type: mongoose.Schema.Types.ObjectId, ref: "Rate" }],
-  created:{type:Date ,default:Date.now}
-  
+  created: { type: Date, default: Date.now },
 });
 
 module.exports = mongoose.model("Products", productsSchema);

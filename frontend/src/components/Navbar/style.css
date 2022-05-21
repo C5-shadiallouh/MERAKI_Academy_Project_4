@@ -57,14 +57,15 @@ nav{
     height: max-content;
 }
 .searchBar button {
-    float: right;
-    padding: 6px 10px;
-    margin-top: 8px;
-    margin-right: 16px;
-    background: #ddd;
-    font-size: 17px;
-    border: none;
-    cursor: pointer;
+    float: right  !important;
+    padding: 6px 10px  !important;
+    margin-top: 8px  !important;
+    margin-right: 16px  !important;
+    background: #ddd  !important;
+    font-size: 17px  !important;
+    border: none  !important;
+    cursor: pointer  !important;
+    color: black  !important;
   }
   
   .searchInput :active{
