@@ -13,6 +13,7 @@ import Hardware from "./components/Categories/ComputerHardware";
 import ProductPage from "./components/ProductPage";
 import Cart from "./components/cart";
 import PaymentForm from "./components/Payments";
+import Charts from "./components/Adminpanel/Charts";
 export const loginStatusContext = createContext();
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
@@ -62,7 +63,7 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          
+          <Route path="/charts" element={<Charts/>} />
           <Route path="/" element={<Home />} />
           <Route path="/adminpanel" element={<AdminPanel />} />
           <Route path="/addproducts" element={<AddProduct />} />

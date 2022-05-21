@@ -52,14 +52,14 @@ const Register = () => {
         }}
       />
       <input
-        type="text"
+        type="password"
         placeholder="password"
         onChange={(e) => {
           setPasswordValidation(e.target.value);
         }}
       />
       <input
-        type="text"
+        type="password"
         placeholder=" confirm password"
         onChange={(e) => {
           if (passwordValidation == e.target.value) {setPassword(e.target.value);}

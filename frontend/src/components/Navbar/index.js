@@ -41,7 +41,7 @@ const Navbar = () => {
             ? { display: "flex" }
             : { display: "none" }
         }>admin&nbsp;panel</Link>
-      <Link to={"/cart"}><FaShoppingCart size={25}/>&nbsp;{cartLength}|{subtotal}</Link>
+      <Link to={"/cart"}><FaShoppingCart size={25}/>&nbsp;&nbsp;{cartLength}&nbsp;|&nbsp;{subtotal}</Link>
       <Link
         to={"/"}
         style={

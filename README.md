@@ -1,13 +1,13 @@
 <p align="center">
   <a href="" rel="noopener">
- <img width=200px height=200px src="https://i.imgur.com/6wj0hh6.jpg" alt="Project logo"></a>
+ <img width=500px height=200px src="https://i.ibb.co/D56r3v7/logo.png" alt="Project logo"></a>
 </p>
 
-<h3 align="center">Project Title</h3>
+<h3 align="center">Meraki For Computers</h3>
 
 ---
 
-<p align="center"> Few lines describing your project.
+<p align="center"> Online pc hardware store.
     <br> 
 </p>
 
@@ -17,45 +17,50 @@
 - [Getting Started](#getting_started)
 - [Usage](#usage)
 - [Built Using](#built_using)
+- [User Story](#user_story)
 - [Guided By](#guided_by)
 
 ## 🧐 About <a name = "about"></a>
-
-Write about 1-2 paragraphs describing the purpose of your project.
+Are you looking for a quick and easy way to buy the high end computers and components?. Then you are in the right place **Meraki for computers** is an online store where you can buy a Pc and Pc components ,sort components By categories and sub categories and give your rank and review for the products listed
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
 ### Prerequisites
++ Visual Studio Code follow this [link](https://code.visualstudio.com/download) to install.
++ Git Bash follow this [link](https://git-scm.com/download/win) to install.
++ MongoDB Code follow this [link](https://www.mongodb.com/try/download/community) to install.
++ Node.js follow this [link](https://nodejs.org/en/download/) to install.
 
-What things you need to install the software and how to install them.
-
-```
-Give examples
-```
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running.
+1. Clone the repo to your local machine using git bash
 
-Say what the step will be
+git clone https://github.com/C5-shadiallouh/MERAKI_Academy_Project_4
 
-```
-Give the example
-```
+2.Install packages (repeat this step in backend and frontend folders)
+npm i
 
-And repeat
+3.Run server using git bash inside backend folder
 
-```
-until finished
-```
+npm run dev
+
+4.Run application using git bash inside frontend folder
+
+npm run start
+
+Now the app is ready to use
 
 End with an example of getting some data out of the system or using it for a little demo.
 
 ## 🎈 Usage <a name="usage"></a>
 
-Add notes about how to use the system.
++ You don't have to register to navigate the app.
++ When you open the app you will see the main (home)page
++ you can see every  single product in the app with a description about it , rating and reviews 
++ you can put your review and rating  click on the **Add to cart** button to add the product to the cart but to do all this things you have to be one of the app users, so you should register and create an account  
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 
@@ -64,7 +69,16 @@ Add notes about how to use the system.
 - [React JS](https://https://reactjs.org/) - Web Framework
 - [Node JS](https://nodejs.org/en/) - Server Environment
 
+## 📚 User Story <a name = "user_story"></a>
+
+You can find it [here](https://trello.com/b/6cCZoVWq/g18shadimerakiacademyproject4)
+
+## 📊 Data Flow <a name = "user_story"></a>
+
+[![Data Flow](/assets/images/diagram.png)](https://trello.com/c/RqeDMHbJ/2-database-diagram)
+
 ## ⚠️ Guided By <a name = "guided_by"></a>
 
 This project is guided by ©️ **[MERAKI Academy](https://www.meraki-academy.org)**
+
 
